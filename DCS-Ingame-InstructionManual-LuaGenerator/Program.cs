@@ -1,8 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+/* This tool creats an easy way to create the lua for the instruction manual pages.
+ * Remember to add a line like `set_manual_path('<aircraft>', current_mod_path .. '/Doc/manual')` right before
+ * the `plugin_done()` line in the aircraft's `<aircraft>\entry.lua` file.
+*/
+
+/* Examples of entries are below.
+-- [color=0xffffffff]
+-- [color=0x6090c0ff]
+-- •
+-- [b]bold[/b]
+
+-- {'header1', [[[color=0xffffffff]Header 1]]},
+-- {'header2', [[Header 2]]},
+-- {'header3', [[[color=0xffffffff]Header 3]]},
+
+-- {'text', [[
+-- Below is a list of essential commands used when flying the UH-1H in Game Avionics Mode:
+-- ]]},
+
+-- {'picture', [[image manual page6.png]]}
+
+-- [color=0x6090c0ff]RSHIFT + M[/color]
+
+-- Refer to Huey for a full manual example
+*/
 
 namespace DCS_Ingame_InstructionManual_LuaGenerator
 {
@@ -12,8 +34,10 @@ namespace DCS_Ingame_InstructionManual_LuaGenerator
         {
             Console.WriteLine("Enter the number of pages and then press ENTER:");
             
+            //the number if pages the user wanted
             int numberOfPages = Convert.ToInt32(Console.ReadLine());
 
+            //init strings
             string header =
                 "return\n" +
                 "{";
@@ -46,7 +70,7 @@ namespace DCS_Ingame_InstructionManual_LuaGenerator
             Console.WriteLine(header);
 
             //loop for creatibng the pages
-            for (int numberOfTimes = 1; numberOfTimes < numberOfPages + 0; numberOfTimes++)
+            for (int numberOfTimes = 1; numberOfTimes < numberOfPages; numberOfTimes++)
             {
                 Console.WriteLine(start + numberOfTimes + middle + numberOfTimes + end);
             }
